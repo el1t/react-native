@@ -13,6 +13,12 @@ executors:
     docker:
       - image: *nodeprevlts_image
     resource_class: "xlarge"
+  # Executor with Node & Java used to inspect and lint
+  node-browsers-small:
+    <<: *defaults
+    docker:
+      - image: *nodelts_browser_image
+    resource_class: "small"
   reactnativeandroid:
     <<: *defaults
     docker:

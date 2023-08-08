@@ -9,7 +9,7 @@ jobs:
   # Issues will be posted to the PR itself via GitHub bots.
   # This workflow should only fail if the bots fail to run.
   analyze_pr:
-    executor: reactnativeandroid
+    executor: node-browsers-small
     steps:
       - checkout
       - run_yarn
@@ -21,7 +21,7 @@ jobs:
   #    JOBS: Analyze Code
   # -------------------------
   analyze_code:
-    executor: reactnativeandroid
+    executor: node-browsers-small
     steps:
       - checkout
       - setup_artifacts
@@ -35,6 +35,13 @@ jobs:
       - run:
           name: Lint Java
           command: scripts/circleci/exec_swallow_error.sh yarn lint-java --check
+          when: always
+
+      - run:
+          name: Set server.max_workers=1 in .flowconfig
+          command: |
+            sed -i '/\[options\]/a server.max_workers=1' .flowconfig
+            sed -i '/\[options\]/a server.max_workers=1' .flowconfig.android
           when: always
 
       - run:

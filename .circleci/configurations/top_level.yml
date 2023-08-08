@@ -50,6 +50,7 @@ references:
     xcode_version: &xcode_version "14.3.0"
     nodelts_image: &nodelts_image "cimg/node:20.2.0"
     nodeprevlts_image: &nodeprevlts_image "cimg/node:18.12.1"
+    nodelts_browser_image: &nodelts_browser_image "cimg/node:20.2.0-browsers"
 
   # -------------------------
   #        Cache Key Anchors
@@ -74,7 +75,7 @@ references:
     pods_cache_key: &pods_cache_key v10-pods-{{ .Environment.CIRCLE_JOB }}-{{ checksum "packages/rn-tester/Podfile.lock.bak" }}-{{ checksum "packages/rn-tester/Podfile" }}
     windows_yarn_cache_key: &windows_yarn_cache_key v1-win-yarn-cache-{{ arch }}-{{ checksum "yarn.lock" }}
     windows_choco_cache_key: &windows_choco_cache_key v1-win-choco-cache-{{ .Environment.CIRCLE_JOB }}
-    yarn_cache_key: &yarn_cache_key v5-yarn-cache-{{ .Environment.CIRCLE_JOB }}
+    yarn_cache_key: &yarn_cache_key v6-yarn-cache-{{ .Environment.CIRCLE_JOB }}
     rbenv_cache_key: &rbenv_cache_key v1-rbenv-{{ checksum "/tmp/required_ruby" }}
 
   cache_paths:
