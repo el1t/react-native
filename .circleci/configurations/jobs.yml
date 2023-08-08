@@ -369,7 +369,7 @@ jobs:
   #    JOBS: Test Android
   # -------------------------
   test_android:
-    executor: reactnativeandroid
+    executor: reactnativeandroid-xlarge
     steps:
       - checkout
       - setup_artifacts
@@ -397,7 +397,7 @@ jobs:
   #    JOBS: Test Android Template
   # -------------------------
   test_android_template:
-    executor: reactnativeandroid
+    executor: reactnativeandroid-large
     parameters:
       flavor:
         default: "Debug"
@@ -1205,7 +1205,7 @@ jobs:
         type: enum
         enum: ["nightly", "release", "dry-run"]
         default: "dry-run"
-    executor: reactnativeandroid
+    executor: reactnativeandroid-xlarge
     environment:
       - HERMES_WS_DIR: *hermes_workspace_root
     steps:

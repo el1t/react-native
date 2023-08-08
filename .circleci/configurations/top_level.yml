@@ -24,6 +24,18 @@ references:
       # Homebrew currently breaks while updating:
       # https://discuss.circleci.com/t/brew-install-fails-while-updating/32992
       - HOMEBREW_NO_AUTO_UPDATE: 1
+  android-defaults: &android-defaults
+    working_directory: ~/react-native
+    docker:
+      - image: reactnativecommunity/react-native-android:v10.0
+    environment:
+      - TERM: "dumb"
+      - GRADLE_OPTS: '-Dorg.gradle.daemon=false'
+      # Repeated here, as the environment key in this executor will overwrite the one in defaults
+      - PUBLIC_ANALYSISBOT_GITHUB_TOKEN_A: *github_analysisbot_token_a
+      - PUBLIC_ANALYSISBOT_GITHUB_TOKEN_B: *github_analysisbot_token_b
+      - PUBLIC_PULLBOT_GITHUB_TOKEN_A: *github_pullbot_token_a
+      - PUBLIC_PULLBOT_GITHUB_TOKEN_B: *github_pullbot_token_b
 
   hermes_workspace_root: &hermes_workspace_root
     /tmp/hermes
